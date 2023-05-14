@@ -2,8 +2,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
 // TODO: Add CSS loaders and babel to webpack.
@@ -21,14 +19,14 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
         chunks: ['main']
       }),
 
       new WebpackPwaManifest({
-        name: 'Just Another Text Editor',
-        short_name: 'JATE',
-        description: 'This is a simple Text Editor',
+        name: 'My App',
+        short_name: 'My App',
+        description: 'This is my app',
         background_color: '#ffffff',
         theme_color: '#000000',
         icons: [
@@ -42,17 +40,6 @@ module.exports = () => {
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'sw.js'
-      }),
-
-      new WorkboxPlugin.GenerateSW({
-        swDest: 'service-worker.js',
-        clientsClaim: true,
-        skipWaiting: true
-      }),
-    
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css'
       })
     ],
 
