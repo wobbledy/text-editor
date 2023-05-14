@@ -24,15 +24,20 @@ module.exports = () => {
       }),
 
       new WebpackPwaManifest({
-        name: 'My App',
-        short_name: 'My App',
-        description: 'This is my app',
+        fingerprints: false,
+        inject: true,
+        name: 'Just Another Text Editor',
+        short_name: 'JATE',
+        description: 'This is a simple text editor',
         background_color: '#ffffff',
         theme_color: '#000000',
+        start_url: './',
+        publicPath: './',
         icons: [
           {
             src: path.resolve('./src/assets/icon.png'),
-            sizes: [96, 128, 192, 256, 384, 512]
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
           }
         ]
       }),
